@@ -23,7 +23,8 @@ def index():
                            test_past_day_data=data.query_past_day_test(),
                            test_and_positivity_past_week_data=data.query_past_week_test_and_positivity(),
                            test_and_positivity_past_month_data=data.query_past_month_test_and_positivity(),
-                           vaccine_data=data.query_vaccine_data())
+                           vaccine_data=data.query_vaccine_data(),
+                           graphJSON_hospitalizations=data.draw_hospitalizations())
 
 
 

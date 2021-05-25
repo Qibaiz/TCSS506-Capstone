@@ -9,6 +9,9 @@ class DataFromHHS:
     def __init__(self):
         self.df_hospitalizations = self.process_hospitalization_df()
 
+    def get_df_hospitalizations(self):
+        return self.df_hospitalizations
+
     def process_hospitalization_df(self):
         # inpatient_beds_used_covid == daily covid-19 hospitalizations
 
@@ -37,7 +40,7 @@ class DataFromHHS:
             df['last_week_icu_covid_utilization'] = df['adult_icu_bed_covid_utilization'].cumsum().diff(periods=8).div(
                 7)
 
-            df['DateTime'] = df['date']
+            df['DateTime'] = df['date'].apply(lambda x: pd.to_datetime(x, format='%Y/%m/%d'))
             df.set_index('date', inplace=True)
 
             df = df[['state', 'DateTime', 'inpatient_beds', 'inpatient_beds_used', 'inpatient_beds_used_covid',
@@ -46,18 +49,22 @@ class DataFromHHS:
                      'seven_day_avg_covid_hospitalizations',
                      'last_week_inpatient_beds_utilization', 'last_week_inpatient_covid_beds_utilization',
                      'last_week_icu_utilization', 'last_week_icu_covid_utilization',
+                     'accumulative_hospitalization',
                      ]]
             pd.set_option('display.max_columns', None)
         return df
 
-    def get_hospitalizations_past_date(self):
+    def get_hospitalizations_last_week(self):
         today = datetime.date.today()
-        target_date = today - datetime.timedelta(days=1)
+        target_date = today - datetime.timedelta(days=8)
         formatted_date = target_date.strftime("%Y/%m/%d")
         return formatted_date
 
     def query_state_overview_hospitalizations_data(self):
-        latest_date = self.get_hospitalizations_past_date()
+        latest_date = self.get_hospitalizations_last_week()
+        # print(type(latest_date))
+        # print(self.df_hospitalizations.tail(10))
+        # print(self.df_hospitalizations.info())
         beds_occupied_last_week = self.df_hospitalizations.loc[latest_date, 'last_week_inpatient_beds_utilization']
         beds_occupied_covid_last_week = self.df_hospitalizations.loc[
             latest_date, 'last_week_inpatient_covid_beds_utilization']
@@ -86,3 +93,8 @@ class DataFromHHS:
         }
 
         return beds_data, icu_data
+
+
+a = DataFromHHS()
+# b = a.query_state_overview_hospitalizations_data()
+# print(b)

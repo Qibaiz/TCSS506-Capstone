@@ -49,9 +49,12 @@
         </div>
 
         <div class="col-md-9 p-3">
-        {% block hospitalization %}
-            {% include 'hospitalization.html' %}
-        {% endblock %}
+            <div id="hospitalizations_chart" class=”chart”></div>
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script type="text/javascript">
+            var graphs = {{graphJSON_hospitalizations | safe}};
+            Plotly.plot('hospitalizations_chart',graphs,{});
+            </script>
         </div>
 
 
