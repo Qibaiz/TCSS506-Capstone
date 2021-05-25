@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-md-3">
+                <h2 style="color: darkblue">DATA TIMELINE</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-md-10">
+                <P style="color: lightslategrey">
+                    Explore the most vital information about how COVID-19 has affected your state since the pandemic
+                    first officially arrived in the United States in January 2020 – cases, deaths, test positivity,
+                    hospitalizations, and vaccinations.
+                </P>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-3">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="cases-tab" data-bs-toggle="tab" data-bs-target="#cases" type="button"
+                role="tab" aria-controls="cases" aria-selected="true">Cases</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="deaths-tab" data-bs-toggle="tab" data-bs-target="#deaths" type="button"
+                role="tab" aria-controls="deaths" aria-selected="false">Deaths</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="testPositivity-tab" data-bs-toggle="tab" data-bs-target="#testPositivity"
+                type="button" role="tab" aria-controls="testPositivity" aria-selected="false">Test Positivity</button>
+      </li>
+
+        <li class="nav-item" role="presentation">
+        <button class="nav-link" id="hospitalizations-tab" data-bs-toggle="tab" data-bs-target="#hospitalizations"
+                type="button" role="tab" aria-controls="hospitalizations" aria-selected="false">Hospitalizations</button>
+      </li>
+
+        <li class="nav-item" role="presentation">
+        <button class="nav-link" id="vaccinations-tab" data-bs-toggle="tab" data-bs-target="#vaccinations"
+            type="button" role="tab" aria-controls="vaccinations" aria-selected="false">Vaccinations</button>
+      </li>
+        </ul>
+    </div>
+
+    <div class="container p-3">
+    <div class="tab-content" id="myTabContent">
+
+      <div class="tab-pane fade show active" id="cases" role="tabpanel" aria-labelledby="cases-tab">
+          <h3>Number of Daily Cases</h3>
+          <div id="cases_chart" class=”chart”></div>
+           <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script type="text/javascript">
+            var graphs = {{graphJSON_cases | safe}};
+            Plotly.plot('cases_chart',graphs,{});
+            </script>
+
+      </div>
+
+        <div class="tab-pane fade" id="deaths" role="tabpanel" aria-labelledby="deaths-tab">
+          <h3>Number of Daily Deaths</h3>
+          <div id="deaths_chart" class=”chart”></div>
+
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script type="text/javascript">
+            var graphs = {{graphJSON_deaths | safe}};
+            Plotly.plot('deaths_chart',graphs,{});
+            </script>
+      </div>
+
+
+        <div class="tab-pane fade" id="testPositivity" role="tabpanel" aria-labelledby="testPositivity-tab">
+          <h3>Daily Tests + Positivity</h3>
+          <div id="testPositivity_chart" class=”chart”></div>
+
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script type="text/javascript">
+            var graphs = {{graphJSON_test_positivity | safe}};
+            Plotly.plot('testPositivity_chart',graphs,{});
+            </script>
+      </div>
+
+        <div class="tab-pane fade" id="hospitalizations" role="tabpanel" aria-labelledby="hospitalizations_chart-tab">
+          <h3>Daily COVID-19 Hospitalizations</h3>
+          <div id="hospitalizations_chart" class=”chart”></div>
+
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script type="text/javascript">
+            var graphs = {{graphJSON_hospitalizations | safe}};
+            Plotly.plot('hospitalizations_chart',graphs,{});
+            </script>
+      </div>
+
+        <div class="tab-pane fade" id="vaccinations" role="tabpanel" aria-labelledby="vaccinations-tab">
+          <h3>Number of Daily Doses</h3>
+          <div id="vaccinations_chart" class=”chart”></div>
+
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script type="text/javascript">
+            var graphs = {{graphJSON_vaccinations | safe}};
+            Plotly.plot('vaccinations_chart',graphs,{});
+            </script>
+
+      </div>
+    </div>
+    </div>
+
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-2">
+                <p style="color: darkblue">Data Sources: </p>
+            </div>
+            <div class="col-10">
+               <P style="color: lightslategrey">
+                    Cases and deaths data from JHU CSSE; testing and vaccine data from JHU CCI;
+                    and hospitalization data from the U.S. Department of Health and Human Services.
+                </P>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

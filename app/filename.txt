@@ -1,0 +1,214 @@
+                         _id       uid country_iso2 country_iso3  \
+0   60a9cba72f5b333b8f794eea  84053001           US          USA   
+1   60a9cba72f5b333b8f795a4e  84053013           US          USA   
+2   60a9cba72f5b333b8f7952b6  84053005           US          USA   
+3   60a9cba72f5b333b8f7950d0  84053003           US          USA   
+4   60a9cba72f5b333b8f795868  84053011           US          USA   
+5   60a9cba72f5b333b8f79549c  84053007           US          USA   
+6   60a9cba72f5b333b8f795682  84053009           US          USA   
+7   60a9cba72f5b333b8f795e1a  84053017           US          USA   
+8   60a9cba72f5b333b8f796000  84053019           US          USA   
+9   60a9cba72f5b333b8f795c34  84053015           US          USA   
+10  60a9cba72f5b333b8f7965b2  84053025           US          USA   
+11  60a9cba72f5b333b8f796798  84053027           US          USA   
+12  60a9cba72f5b333b8f797116  84053037           US          USA   
+13  60a9cba72f5b333b8f7961e6  84053021           US          USA   
+14  60a9cba72f5b333b8f796f30  84053035           US          USA   
+15  60a9cba72f5b333b8f79697e  84053029           US          USA   
+16  60a9cba72f5b333b8f7963cc  84053023           US          USA   
+17  60a9cba72f5b333b8f796d4a  84053033           US          USA   
+18  60a9cba72f5b333b8f796b64  84053031           US          USA   
+19  60a9cba72f5b333b8f7972fc  84053039           US          USA   
+20  60a9cba72f5b333b8f797a94  84053047           US          USA   
+21  60a9cba72f5b333b8f797e60  84053049           US          USA   
+22  60a9cba72f5b333b8f798046  84053051           US          USA   
+23  60a9cba72f5b333b8f798412  84053055           US          USA   
+24  60a9cba72f5b333b8f7985f8  84053057           US          USA   
+25  60a9cba72f5b333b8f797c7a  84080053           US          USA   
+26  60a9cba72f5b333b8f7974e2  84053041           US          USA   
+27  60a9cba72f5b333b8f7978ae  84053045           US          USA   
+28  60a9cba72f5b333b8f7976c8  84053043           US          USA   
+29  60a9cba72f5b333b8f79822c  84053053           US          USA   
+30  60a9cba72f5b333b8f79970e  84053073           US          USA   
+31  60a9cba72f5b333b8f7987de  84053059           US          USA   
+32  60a9cba72f5b333b8f7998f4  84053075           US          USA   
+33  60a9cba72f5b333b8f798f76  84053067           US          USA   
+34  60a9cba72f5b333b8f79915c  84090053           US          USA   
+35  60a9cba72f5b333b8f798baa  84053063           US          USA   
+36  60a9cba72f5b333b8f798d90  84053065           US          USA   
+37  60a9cba72f5b333b8f799342  84053069           US          USA   
+38  60a9cba72f5b333b8f7989c4  84053061           US          USA   
+39  60a9cba72f5b333b8f799528  84053071           US          USA   
+40  60a9cba72f5b333b8f799ada  84053077           US          USA   
+
+    country_code   fips        county       state country  \
+0            840  53001         Adams  Washington      US   
+1            840  53013      Columbia  Washington      US   
+2            840  53005        Benton  Washington      US   
+3            840  53003        Asotin  Washington      US   
+4            840  53011         Clark  Washington      US   
+5            840  53007        Chelan  Washington      US   
+6            840  53009       Clallam  Washington      US   
+7            840  53017       Douglas  Washington      US   
+8            840  53019         Ferry  Washington      US   
+9            840  53015       Cowlitz  Washington      US   
+10           840  53025         Grant  Washington      US   
+11           840  53027  Grays Harbor  Washington      US   
+12           840  53037      Kittitas  Washington      US   
+13           840  53021      Franklin  Washington      US   
+14           840  53035        Kitsap  Washington      US   
+15           840  53029        Island  Washington      US   
+16           840  53023      Garfield  Washington      US   
+17           840  53033          King  Washington      US   
+18           840  53031     Jefferson  Washington      US   
+19           840  53039     Klickitat  Washington      US   
+20           840  53047      Okanogan  Washington      US   
+21           840  53049       Pacific  Washington      US   
+22           840  53051  Pend Oreille  Washington      US   
+23           840  53055      San Juan  Washington      US   
+24           840  53057        Skagit  Washington      US   
+25           840  80053     Out of WA  Washington      US   
+26           840  53041         Lewis  Washington      US   
+27           840  53045         Mason  Washington      US   
+28           840  53043       Lincoln  Washington      US   
+29           840  53053        Pierce  Washington      US   
+30           840  53073       Whatcom  Washington      US   
+31           840  53059      Skamania  Washington      US   
+32           840  53075       Whitman  Washington      US   
+33           840  53067      Thurston  Washington      US   
+34           840  90053    Unassigned  Washington      US   
+35           840  53063       Spokane  Washington      US   
+36           840  53065       Stevens  Washington      US   
+37           840  53069     Wahkiakum  Washington      US   
+38           840  53061     Snohomish  Washington      US   
+39           840  53071   Walla Walla  Washington      US   
+40           840  53077        Yakima  Washington      US   
+
+                   combined_name  population  \
+0          Adams, Washington, US     19983.0   
+1       Columbia, Washington, US      3985.0   
+2         Benton, Washington, US    204390.0   
+3         Asotin, Washington, US     22582.0   
+4          Clark, Washington, US    488241.0   
+5         Chelan, Washington, US     77200.0   
+6        Clallam, Washington, US     77331.0   
+7        Douglas, Washington, US     43429.0   
+8          Ferry, Washington, US      7627.0   
+9        Cowlitz, Washington, US    110593.0   
+10         Grant, Washington, US     97733.0   
+11  Grays Harbor, Washington, US     75061.0   
+12      Kittitas, Washington, US     47935.0   
+13      Franklin, Washington, US     95222.0   
+14        Kitsap, Washington, US    271473.0   
+15        Island, Washington, US     85141.0   
+16      Garfield, Washington, US      2225.0   
+17          King, Washington, US   2252782.0   
+18     Jefferson, Washington, US     32221.0   
+19     Klickitat, Washington, US     22425.0   
+20      Okanogan, Washington, US     42243.0   
+21       Pacific, Washington, US     22471.0   
+22  Pend Oreille, Washington, US     13724.0   
+23      San Juan, Washington, US     17582.0   
+24        Skagit, Washington, US    129205.0   
+25     Out of WA, Washington, US         NaN   
+26         Lewis, Washington, US     80707.0   
+27         Mason, Washington, US     66768.0   
+28       Lincoln, Washington, US     10939.0   
+29        Pierce, Washington, US    904980.0   
+30       Whatcom, Washington, US    229247.0   
+31      Skamania, Washington, US     12083.0   
+32       Whitman, Washington, US     50104.0   
+33      Thurston, Washington, US    290536.0   
+34    Unassigned, Washington, US         NaN   
+35       Spokane, Washington, US    522798.0   
+36       Stevens, Washington, US     45723.0   
+37     Wahkiakum, Washington, US      4488.0   
+38     Snohomish, Washington, US    822083.0   
+39   Walla Walla, Washington, US     60760.0   
+40        Yakima, Washington, US    250873.0   
+
+                                                  loc  \
+0   {'type': 'Point', 'coordinates': [-118.5602, 4...   
+1   {'type': 'Point', 'coordinates': [-117.9052, 4...   
+2   {'type': 'Point', 'coordinates': [-119.5121, 4...   
+3   {'type': 'Point', 'coordinates': [-117.2023, 4...   
+4   {'type': 'Point', 'coordinates': [-122.4829, 4...   
+5   {'type': 'Point', 'coordinates': [-120.6174, 4...   
+6   {'type': 'Point', 'coordinates': [-123.9226, 4...   
+7   {'type': 'Point', 'coordinates': [-119.6929, 4...   
+8   {'type': 'Point', 'coordinates': [-118.5154, 4...   
+9   {'type': 'Point', 'coordinates': [-122.6782, 4...   
+10  {'type': 'Point', 'coordinates': [-119.4501, 4...   
+11  {'type': 'Point', 'coordinates': [-123.7821, 4...   
+12  {'type': 'Point', 'coordinates': [-120.6794, 4...   
+13  {'type': 'Point', 'coordinates': [-118.9018, 4...   
+14  {'type': 'Point', 'coordinates': [-122.6436, 4...   
+15  {'type': 'Point', 'coordinates': [-122.5216, 4...   
+16  {'type': 'Point', 'coordinates': [-117.5454, 4...   
+17  {'type': 'Point', 'coordinates': [-121.8346, 4...   
+18  {'type': 'Point', 'coordinates': [-123.561, 47...   
+19  {'type': 'Point', 'coordinates': [-120.7914, 4...   
+20  {'type': 'Point', 'coordinates': [-119.7387, 4...   
+21  {'type': 'Point', 'coordinates': [-123.7286, 4...   
+22  {'type': 'Point', 'coordinates': [-117.2742, 4...   
+23  {'type': 'Point', 'coordinates': [-122.9674, 4...   
+24  {'type': 'Point', 'coordinates': [-121.7661, 4...   
+25                                                NaN   
+26  {'type': 'Point', 'coordinates': [-122.3926, 4...   
+27  {'type': 'Point', 'coordinates': [-123.1864, 4...   
+28  {'type': 'Point', 'coordinates': [-118.4194, 4...   
+29  {'type': 'Point', 'coordinates': [-122.1406, 4...   
+30  {'type': 'Point', 'coordinates': [-121.749, 48...   
+31  {'type': 'Point', 'coordinates': [-121.9164, 4...   
+32  {'type': 'Point', 'coordinates': [-117.5242, 4...   
+33  {'type': 'Point', 'coordinates': [-122.8291, 4...   
+34                                                NaN   
+35  {'type': 'Point', 'coordinates': [-117.4046, 4...   
+36  {'type': 'Point', 'coordinates': [-117.8543, 4...   
+37  {'type': 'Point', 'coordinates': [-123.4251, 4...   
+38  {'type': 'Point', 'coordinates': [-121.7171, 4...   
+39  {'type': 'Point', 'coordinates': [-118.4776, 4...   
+40  {'type': 'Point', 'coordinates': [-120.738, 46...   
+
+                        date  confirmed  deaths  confirmed_daily  deaths_daily  
+0   2021-05-21T00:00:00.000Z       2166      23                6             0  
+1   2021-05-21T00:00:00.000Z        122       4                1             0  
+2   2021-05-21T00:00:00.000Z      17101     220               23             0  
+3   2021-05-21T00:00:00.000Z       1466      27                3             0  
+4   2021-05-21T00:00:00.000Z      24273     267               95             2  
+5   2021-05-21T00:00:00.000Z       6749      66               10             0  
+6   2021-05-21T00:00:00.000Z       1309      10                4             0  
+7   2021-05-21T00:00:00.000Z       3591      22                3             0  
+8   2021-05-21T00:00:00.000Z        369       8                3             0  
+9   2021-05-21T00:00:00.000Z       6027      91               34             0  
+10  2021-05-21T00:00:00.000Z       8991      78               19             0  
+11  2021-05-21T00:00:00.000Z       4210      70               29             0  
+12  2021-05-21T00:00:00.000Z       3054      33               11             0  
+13  2021-05-21T00:00:00.000Z      12474     115               14             0  
+14  2021-05-21T00:00:00.000Z       8254     112               51             0  
+15  2021-05-21T00:00:00.000Z       1757      31                6             0  
+16  2021-05-21T00:00:00.000Z        123       5                0             0  
+17  2021-05-21T00:00:00.000Z     108120    1559              275             4  
+18  2021-05-21T00:00:00.000Z        411       3                0             0  
+19  2021-05-21T00:00:00.000Z        765      10                2             0  
+20  2021-05-21T00:00:00.000Z       2587      40                9             0  
+21  2021-05-21T00:00:00.000Z        946      11                2             0  
+22  2021-05-21T00:00:00.000Z        777       9                3             0  
+23  2021-05-21T00:00:00.000Z        181       0                0             0  
+24  2021-05-21T00:00:00.000Z       5762      73               18             1  
+25  2021-05-21T00:00:00.000Z          0       0                0             0  
+26  2021-05-21T00:00:00.000Z       4716      66               48             0  
+27  2021-05-21T00:00:00.000Z       2777      34                8             0  
+28  2021-05-21T00:00:00.000Z        558       8                9             0  
+29  2021-05-21T00:00:00.000Z      53392     677              323             2  
+30  2021-05-21T00:00:00.000Z       9186      97               47             0  
+31  2021-05-21T00:00:00.000Z        354       1                0             0  
+32  2021-05-21T00:00:00.000Z       4250      49                0             0  
+33  2021-05-21T00:00:00.000Z       9855     105               98             0  
+34  2021-05-21T00:00:00.000Z       1491       3                3             0  
+35  2021-05-21T00:00:00.000Z      43687     643              280             1  
+36  2021-05-21T00:00:00.000Z       2237      28                7             0  
+37  2021-05-21T00:00:00.000Z        123       0                5             0  
+38  2021-05-21T00:00:00.000Z      38261     583              164             2  
+39  2021-05-21T00:00:00.000Z       5096      65                3             0  
+40  2021-05-21T00:00:00.000Z      29926     456               30             0  

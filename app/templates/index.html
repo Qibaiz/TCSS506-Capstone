@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+<div class="container p-3">
+    <div class="row">
+        <div class="col-md-3">
+            <h2 style="color: darkblue">STATE OVERVIEW</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container p-3">
+    <div class="row">
+        <div class="col-md-12 p-3">
+        {% block state_overview %}
+            {% include 'state_overview.html' %}
+        {% endblock %}
+        </div>
+    </div>
+</div>
+
+
+<div class="container p-3">
+    <div class="row">
+        <div class="col-md-3">
+            <h2 style="color: darkblue">VACCINE TRACKER</h2>
+        </div>
+
+        <div class="col-md-9 p-3">
+        {% block vaccine_tracker %}
+            {% include 'vaccine_tracker.html' %}
+        {% endblock %}
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container p-3">
+    <div class="row">
+        <div class="col-md-3">
+ 
+            <h2 style="color: darkblue">HOSPITALIZATION</h2>
+            <br>
+            <p style="color: lightslategrey">This tool contains the most updated information on
+            inpatient bed and ICU bed occupancy rates for last week and
+            the week prior.
+            </p>
+        </div>
+
+        <div class="col-md-9 p-3">
+        {% block hospitalization %}
+            {% include 'hospitalization.html' %}
+        {% endblock %}
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="container p-3">
+    <div class="row">
+        <div class="col-md-3">
+            <h4 style="color: #2b669a">Notes</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+            <span class="border border-1">
+                <p style="color: #2b669a">APRIL 8, 2021 </p>
+                <p style="color: lightslategrey">
+                Declines in U.S. cases and deaths that appear in the Coronavirus Resource Center’s
+                    data on Mondays are the result of several states not reporting the information
+                    over the weekend. Those states are: Alaska, Connecticut, Idaho, Kansas, Louisiana,
+                    Michigan, North Carolina, Oklahoma, Rhode Island, Tennessee, Washington and Wyoming.
+                </p>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

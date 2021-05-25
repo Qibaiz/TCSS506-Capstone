@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-md-3">
+                <h2 style="color: darkblue">COUNTY MAPS</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-3">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="dailyDataDemo-tab" data-bs-toggle="tab" data-bs-target="#dailyDataDemo" type="button"
+                role="tab" aria-controls="dailyDataDemo" aria-selected="true">Daily Data and Demographics</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="cumulativeData-tab" data-bs-toggle="tab" data-bs-target="#cumulativeData" type="button"
+                role="tab" aria-controls="cumulativeData" aria-selected="false">Cumulative Data</button>
+      </li>
+
+        </ul>
+    </div>
+
+
+    <div class="container p-3">
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="dailyDataDemo" role="tabpanel" aria-labelledby="dailyDataDemo-tab">
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p style="color: lightslategrey">
+                            This tool shows key county-level COVID-19 case and testing data with the option to
+                            overlay it against demographic information—including race/ethnicity and poverty rates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <h1>search column</h1>
+                </div>
+
+
+                <div class="col-8">
+                    <h1>map</h1>
+
+                </div>
+            </div>
+
+            <div class="container p-3">
+                <div class="row">
+                    <h3 style="color: darkblue">Statewide Racial Breakdown of Cases and Deaths</h3>
+                </div>
+            </div>
+
+
+            <div class="container p-3">
+                <div class="row">
+
+                    <div class="col-4">
+                        <h4>black or african american</h4>
+
+                    </div>
+
+                    <div class="col-4">
+                        <h4>hispanic or latino</h4>
+                    </div>
+
+                    <div class="col-4">
+                        <h4>American Indian and alaska native</h4>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container p-3">
+                <div class="row">
+                    <p style="color: lightslategrey">Data Source: Data shown is only for cases and deaths where
+                        racial data is reported up through March 7, 2021.</p>
+                </div>
+            </div>
+
+            </div>
+
+
+            <div class="tab-pane fade" id="cumulativeData" role="tabpanel" aria-labelledby="cumulativeData-tab">
+                <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p style="color: lightslategrey">
+                            This map shows cumulative numbers for the length of the pandemic. Demographic data
+                            can be selected from the demographic menu on the Daily Data and Demographics tab.
+                        </p>
+                    </div>
+                </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                              data-bs-toggle="dropdown" aria-expanded="false">
+                        total cases
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        <li><button class="dropdown-item active" id="accCases-btn" type="button" data-bs-target="#accCases"
+                                    aria-controls="accCases" aria-selected="true">Total cases</button></li>
+                        <li><button class="dropdown-item" id="accDeaths-btn" type="button" data-bs-target="#accDeaths"
+                                    aria-controls="accDeaths" aria-selected="true">Total deaths</button></li>
+<!--                        <li><hr class="dropdown-divider"></li>-->
+<!--                        <li><a class="dropdown-item" href="#">Separated link</a></li>-->
+                      </ul>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="row" >
+                    <div class="col-md-12" id="accCases" aria-labelledby="accCases-btn">
+                        <div id="acc_confirmed_chart" class=”chart”></div>
+                           <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                            <script type="text/javascript">
+                            var graphs = {{mapJSON_acc_confirmed | safe}};
+                            Plotly.plot('acc_confirmed_chart',graphs,{});
+                            </script>
+
+                    </div>
+                </div>
+
+
+                <div class="row" >
+                    <div class="col-md-12" id="accDeaths" aria-labelledby="accDeaths-btn">
+                        <div id="acc_Deaths_chart" class=”chart”></div>
+                           <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                            <script type="text/javascript">
+                            var graphs = {{mapJSON_acc_deaths | safe}};
+                            Plotly.plot('acc_Deaths_chart',graphs,{});
+                            </script>
+
+                    </div>
+                </div>
+
+                <div class="container p-3">
+                <div class="row">
+                    <p style="color: lightslategrey">Data Source: Cases and deaths data from JHU CSSE</p>
+                </div>
+            </div>
+
+
+            </div>
+
+    </div>
+
+
+
+    </div>
+
+
+
+{% endblock %}

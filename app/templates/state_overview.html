@@ -1,0 +1,115 @@
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="allTime-tab" data-bs-toggle="tab" data-bs-target="#allTime" type="button"
+            role="tab" aria-controls="allTime" aria-selected="true">All Time</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pastDay-tab" data-bs-toggle="tab" data-bs-target="#pastDay" type="button"
+            role="tab" aria-controls="pastDay" aria-selected="false">Past Day</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pastWeek-tab" data-bs-toggle="tab" data-bs-target="#pastWeek"
+            type="button" role="tab" aria-controls="pastWeek" aria-selected="false">Past Week</button>
+  </li>
+
+    <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pastMonth-tab" data-bs-toggle="tab" data-bs-target="#pastMonth"
+            type="button" role="tab" aria-controls="pastMonth" aria-selected="false">Past Month</button>
+  </li>
+</ul>
+
+
+<div class="row p-3">
+<div class="tab-content" id="myTabContent">
+
+  <div class="tab-pane fade show active" id="allTime" role="tabpanel" aria-labelledby="allTime-tab">
+
+      <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">Confirmed Cases</th>
+                  <th scope="col">Deaths</th>
+                  <th scope="col">Total Tested</th>
+                  <th scope="col">Testing Positivity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+<!--                    var nf = Intl.NumberFormat();-->
+                  <td>{{cases_and_deaths_all_time_data[0]}}</td>
+                  <td>{{cases_and_deaths_all_time_data[1]}}</td>
+                  <td>{{test_and_positivity_all_time_data['test']}}</td>
+                  <td>{{test_and_positivity_all_time_data['positivity']}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+  </div>
+  <div class="tab-pane fade" id="pastDay" role="tabpanel" aria-labelledby="pastDay-tab">
+      <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">New Cases</th>
+                  <th scope="col">New Deaths</th>
+                  <th scope="col">Test Results</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{cases_and_deaths_past_day_data[0]}}</td>
+                  <td>{{cases_and_deaths_past_day_data[1]}}</td>
+                  <td>{{test_past_day_data}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+  </div>
+  <div class="tab-pane fade" id="pastWeek" role="tabpanel" aria-labelledby="pastWeek-tab">
+
+      <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">New Cases</th>
+                  <th scope="col">New Deaths</th>
+                  <th scope="col">Test Results</th>
+                  <th scope="col">Testing Positivity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{cases_and_deaths_past_week_data[0]}}</td>
+                  <td>{{cases_and_deaths_past_week_data[1]}}</td>
+                  <td>{{test_and_positivity_past_week_data['test']}}</td>
+                  <td>{{test_and_positivity_past_week_data['positivity']}}</td>
+                </tr>
+              </tbody>
+        </table>
+
+  </div>
+  <div class="tab-pane fade" id="pastMonth" role="tabpanel" aria-labelledby="pastMonth-tab">
+
+      <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">New Cases</th>
+                  <th scope="col">New Deaths</th>
+                  <th scope="col">Test Results</th>
+                  <th scope="col">Testing Positivity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{cases_and_deaths_past_month_data[0]}}</td>
+                  <td>{{cases_and_deaths_past_month_data[1]}}</td>
+                  <td>{{test_and_positivity_past_month_data['test']}}</td>
+                  <td>{{test_and_positivity_past_month_data['positivity']}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+  </div>
+</div>
+</div>
+
