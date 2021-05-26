@@ -31,61 +31,51 @@
             <div class="tab-pane fade show active" id="dailyDataDemo" role="tabpanel" aria-labelledby="dailyDataDemo-tab">
 
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p style="color: lightslategrey">
-                            This tool shows key county-level COVID-19 case and testing data with the option to
-                            overlay it against demographic information—including race/ethnicity and poverty rates.
-                        </p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="color: lightslategrey">
+                                This tool shows key county-level COVID-19 case and testing data with the option to
+                                overlay it against demographic information—including race/ethnicity and poverty rates.
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-4">
-                    <h1>search column</h1>
+
+                <div class="row">
+                    <div id="daily_confirmed_chart" class=”chart”></div>
+                   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                    <script type="text/javascript">
+                    var graphs = {{mapJSON_daily_confirmed | safe}};
+                    Plotly.plot('daily_confirmed_chart',graphs,{});
+                    </script>
                 </div>
 
-
-                <div class="col-8">
-                    <h1>map</h1>
-
-                </div>
-            </div>
-
-            <div class="container p-3">
+                 <div class="container p-3">
                 <div class="row">
                     <h3 style="color: darkblue">Statewide Racial Breakdown of Cases and Deaths</h3>
+
                 </div>
-            </div>
-
-
-            <div class="container p-3">
                 <div class="row">
-
-                    <div class="col-4">
-                        <h4>black or african american</h4>
-
-                    </div>
-
-                    <div class="col-4">
-                        <h4>hispanic or latino</h4>
-                    </div>
-
-                    <div class="col-4">
-                        <h4>American Indian and alaska native</h4>
-                    </div>
+                 <div id="racial_chart" class=”chart”></div>
+                   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                    <script type="text/javascript">
+                    var graphs = {{graphJSON_racial | safe}};
+                    Plotly.plot('racial_chart',graphs,{});
+                    </script>
 
                 </div>
             </div>
 
-            <div class="container p-3">
+
+                <div class="container p-3">
                 <div class="row">
                     <p style="color: lightslategrey">Data Source: Data shown is only for cases and deaths where
                         racial data is reported up through March 7, 2021.</p>
                 </div>
             </div>
+
 
             </div>
 
@@ -157,6 +147,13 @@
 
 
             </div>
+
+
+
+        </div>
+
+
+
 
     </div>
 

@@ -95,4 +95,7 @@ def county_maps():
     data = MapData()
     return render_template('county_maps.html', title=title,
                            mapJSON_acc_confirmed=data.map_cumulative_data_total_cases(),
-                           mapJSON_acc_deaths=data.map_cumulative_data_total_deaths())
+                           mapJSON_acc_deaths=data.map_cumulative_data_total_deaths(),
+                           mapJSON_daily_confirmed=data.map_daily_data_and_demo_cases(),
+                           mapJSON_daily_deaths=data.map_daily_data_and_demo_deaths(),
+                           graphJSON_racial=data.graph_racial_breakdown())

@@ -113,6 +113,7 @@ class StateData:
         labels = ['Non COVID-19', 'COVID-19', 'Unoccupied']
         beds_values = list(beds_data.values())
         icu_values = list(icu_data.values())
+        colors = ['#9FE2BF', '#EE82EE', '#87CEEB']
 
         fig = make_subplots(rows=1, cols=2, specs=[[{'type': 'domain'}, {'type': 'domain'}]])
 
@@ -122,7 +123,7 @@ class StateData:
         fig.add_trace(go.Pie(labels=labels, values=icu_values, name="ICU"),
                       1, 2)
 
-        fig.update_traces(hole=.4, hoverinfo="label+percent+name")
+        fig.update_traces(hole=.4, hoverinfo="label+percent+name", marker=dict(colors=colors))
         fig.update_layout(
             margin=dict(t=50, l=10, b=10, r=10),
             title=dict(

@@ -184,7 +184,10 @@ class DataFromJhuCSSE:
         return df
 
 
-# a = DataFromJhuCSSE()
+a = DataFromJhuCSSE()
+# df = a.process_county_maps_cases_and_deaths_data()
+# print(df.info())
+
 #
 # df = a.convert_json_to_pd()
 # with open('filename.txt', 'w') as f:
