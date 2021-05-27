@@ -5,4 +5,7 @@ class Config(object):
 
     # DATABASE configuration
     SQLALCHEMY_DATABASE_URI = 'sqlite:///login.db'
+    # SQLALCHEMY_BINDS = {'track': 'sqlite:///favorite.db'}
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
