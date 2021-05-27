@@ -37,10 +37,10 @@
               <tbody>
                 <tr>
 <!--                    var nf = Intl.NumberFormat();-->
-                  <td>{{cases_and_deaths_all_time_data[0]}}</td>
-                  <td>{{cases_and_deaths_all_time_data[1]}}</td>
-                  <td>{{test_and_positivity_all_time_data['test']}}</td>
-                  <td>{{test_and_positivity_all_time_data['positivity']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{cases_and_deaths_all_time_data['all_time_confirmed_cases']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{cases_and_deaths_all_time_data['all_time_deaths']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{test_and_positivity_all_time_data['test']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{test_and_positivity_all_time_data['positivity']}}</td>
                 </tr>
               </tbody>
             </table>
@@ -57,9 +57,9 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>{{cases_and_deaths_past_day_data[0]}}</td>
-                  <td>{{cases_and_deaths_past_day_data[1]}}</td>
-                  <td>{{test_past_day_data}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{cases_and_deaths_past_day_data['new_cases']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{cases_and_deaths_past_day_data['new_deaths']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{test_past_day_data}}</td>
                 </tr>
               </tbody>
             </table>
@@ -79,10 +79,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>{{cases_and_deaths_past_week_data[0]}}</td>
-                  <td>{{cases_and_deaths_past_week_data[1]}}</td>
-                  <td>{{test_and_positivity_past_week_data['test']}}</td>
-                  <td>{{test_and_positivity_past_week_data['positivity']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{cases_and_deaths_past_week_data['past_week_new_cases']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{cases_and_deaths_past_week_data['past_week_deaths']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{test_and_positivity_past_week_data['test']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{test_and_positivity_past_week_data['positivity']}}</td>
                 </tr>
               </tbody>
         </table>
@@ -101,10 +101,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>{{cases_and_deaths_past_month_data[0]}}</td>
-                  <td>{{cases_and_deaths_past_month_data[1]}}</td>
-                  <td>{{test_and_positivity_past_month_data['test']}}</td>
-                  <td>{{test_and_positivity_past_month_data['positivity']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{cases_and_deaths_past_month_data['past_month_new_cases']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{cases_and_deaths_past_month_data['past_month_deaths']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{test_and_positivity_past_month_data['test']}}</td>
+                  <td class="fs-3 fw-bolder text-primary">{{test_and_positivity_past_month_data['positivity']}}</td>
                 </tr>
               </tbody>
             </table>

@@ -139,7 +139,7 @@ class GraphData:
         fig.update_layout(
             plot_bgcolor="rgb(240,240,240)",
             autosize=False,
-            width=1100,
+            width=1200,
             margin=dict(t=50, l=10, b=10, r=10),
             xaxis_tickfont_size=14,
             yaxis=dict(
@@ -194,7 +194,7 @@ class GraphData:
         fig.update_layout(
             plot_bgcolor="rgb(240,240,240)",
             autosize=False,
-            width=1100,
+            width=1200,
             margin=dict(t=50, l=10, b=10, r=10),
             xaxis_tickfont_size=14,
             yaxis=dict(
@@ -250,7 +250,7 @@ class GraphData:
         fig.update_layout(
             plot_bgcolor="rgb(240,240,240)",
             autosize=False,
-            width=1100,
+            width=1200,
             margin=dict(t=50, l=10, b=10, r=10),
             xaxis_tickfont_size=14,
             yaxis=dict(
@@ -306,7 +306,7 @@ class GraphData:
         fig.update_layout(
             plot_bgcolor="rgb(240,240,240)",
             autosize=False,
-            width=1100,
+            width=1200,
             margin=dict(t=50, l=10, b=10, r=10),
             xaxis_tickfont_size=14,
             yaxis=dict(

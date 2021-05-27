@@ -15,8 +15,6 @@ class MapData:
 
         self.geojson = self.process_geojson_file()
 
-
-
     def process_geojson_file(self):
         with urlopen(
                 'https://raw.githubusercontent.com/loganpowell/census-geojson/master/GeoJSON/20m/2019/county.json') \
@@ -38,7 +36,6 @@ class MapData:
                     value['properties'].update({"FIPS": fip_data})
 
         return data
-
 
     def map_cumulative_data_total_cases(self):
         df = self.data_src.process_county_maps_cases_and_deaths_data()
@@ -112,6 +109,7 @@ class MapData:
             locations='fips',
             color='confirmed_daily',
             color_continuous_scale='Sunset',
+            custom_data=[],
             hover_name='county',
             hover_data={
                 'fips': False,
@@ -164,10 +162,44 @@ class MapData:
         # fig.show()
         return json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
+    def map_daily_cases_and_deaths(self, option='confirmed_daily'):
+        df = self.data_src.process_county_maps_cases_and_deaths_data()
+        color_scale = 'Sunset'
+        if option == 'deaths_daily':
+            color_scale = 'Emrld'
+
+        fig = px.choropleth(
+            df,
+            geojson=self.geojson,
+            featureidkey='properties.FIPS',
+            locations='fips',
+            color=option,
+            color_continuous_scale=color_scale,
+            hover_name='county',
+            hover_data={
+                'fips': False,
+                option: ': ,'
+            },
+
+        )
+
+        fig.update_geos(fitbounds="locations", visible=False)
+        fig.update_layout(
+            width=1100,
+            margin={"r": 0, "t": 0, "l": 0, "b": 0},
+            hoverlabel=dict(
+                bgcolor="white",
+                font_size=16,
+                font_family="Rockwell"
+            )
+        )
+        # fig.show()
+        return json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
     def graph_racial_breakdown(self):
         cases_data, deaths_data = self.racial_data_src.get_racial_data_of_cases_and_deaths()
 
-        racials = ['White','Hispanic','Latino','Asian','Black','American Indian<br>Alaska Native',
+        racials = ['White', 'Hispanic', 'Latino', 'Asian', 'Black', 'American Indian<br>Alaska Native',
                    'Native Hawaiian<br>Pacific Islander']
 
         fig = go.Figure()
@@ -191,10 +223,11 @@ class MapData:
 
         ))
 
-        # Here we modify the tickangle of the xaxis, resulting in rotated labels.
-        fig.update_layout(barmode='group', xaxis_tickangle=-45)
+        # Here we modify the tickangle of the xaxis, resulting in rotated labels. /xaxis_tickangle=-45
+        fig.update_layout(barmode='group')
         # fig.show()
         return json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
 
 a = MapData()
 # a.graph_racial_breakdown()

@@ -10,6 +10,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="test" />
+    <orderEntry type="module" module-name="flask-project" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="NUMPY" />

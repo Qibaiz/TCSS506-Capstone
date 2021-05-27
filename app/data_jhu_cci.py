@@ -98,7 +98,7 @@ class DataFromJhuCCI:
                 positivity_cases = value['cases_conf_probable']
                 testing_positivity = '{:.2%}'.format(positivity_cases / test_cases)  # str
         data = {
-            'test': test_cases,  # int
+            'test': f'{test_cases:,}',  # int
             'positivity': testing_positivity  # str
         }
 
@@ -117,7 +117,7 @@ class DataFromJhuCCI:
                 test_cases_end = value['tests_combined_total']
         test_result = test_cases_end - test_cases_from
 
-        return test_result
+        return f'{test_result:,}'
 
     def query_state_overview_past_week_test_and_positivity(self):
         date_end = self.get_state_overview_past_day_date()
@@ -141,7 +141,7 @@ class DataFromJhuCCI:
         positivity_ratio = '{:.2%}'.format(positivity_cases_result / test_result)
 
         data = {
-            'test': test_result,
+            'test': f'{test_result:,}',
             'positivity': positivity_ratio
         }
         return data
@@ -168,7 +168,7 @@ class DataFromJhuCCI:
         positivity_ratio = '{:.2%}'.format(positivity_cases_result / test_result)
 
         data = {
-            'test': test_result,
+            'test': f'{test_result:,}',
             'positivity': positivity_ratio
         }
         return data
@@ -193,8 +193,8 @@ class DataFromJhuCCI:
         vaccinated_ratio = '{:.2%}'.format(fully_vaccinated_cases / population)
 
         data = {
-            'dose_administered': dose_administered,
-            'fully_vaccinated_cases': fully_vaccinated_cases,
+            'dose_administered': f'{dose_administered:,.0f}',
+            'fully_vaccinated_cases': f'{fully_vaccinated_cases:,.0f}',
             'vaccinated_ratio': vaccinated_ratio
         }
 

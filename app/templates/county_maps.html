@@ -14,7 +14,7 @@
         <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link active" id="dailyDataDemo-tab" data-bs-toggle="tab" data-bs-target="#dailyDataDemo" type="button"
-                role="tab" aria-controls="dailyDataDemo" aria-selected="true">Daily Data and Demographics</button>
+                role="tab" aria-controls="dailyDataDemo" aria-selected="true">Daily Data</button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="cumulativeData-tab" data-bs-toggle="tab" data-bs-target="#cumulativeData" type="button"
@@ -35,30 +35,77 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p style="color: lightslategrey">
-                                This tool shows key county-level COVID-19 case and testing data with the option to
-                                overlay it against demographic information—including race/ethnicity and poverty rates.
+                                This tool shows key county-level COVID-19 case and testing data.
                             </p>
                         </div>
                     </div>
                 </div>
 
 
+
+                <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script>
+                    function cb(selection) {
+                        $.getJSON({
+                            url: "/callback", data: { 'data': selection }, success: function (result) {
+                                Plotly.newPlot('daily_chart', result, {});
+                            }
+                        });
+                    }
+                </script>
+                <div class="col-2">
+                <select class="form-select form-select-sm" onChange="cb(this.options[this.selectedIndex].value)">
+                    <option value="confirmed_daily" selected>New Daily Cases</option>
+{#                      <option value="confirmed_daily">New Daily Cases</option>#}
+                  <option value="deaths_daily">New Daily Deaths</option>
+                </select>
+
+{#                    <div class="dropdown">#}
+{#                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"#}
+{#                              data-bs-toggle="dropdown" aria-expanded="false" onchange="cb(this.options[this.selectedIndex].value)">#}
+{#                        New Daily Cases#}
+{#                      </button>#}
+{#                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">#}
+{#                        <li><button class="dropdown-item active" id="dailyCases-btn" type="button" data-bs-target="#dailyCases"#}
+{#                                    aria-controls="accCases" aria-selected="true" value="confirmed_daily">New Daily Cases</button></li>#}
+{#                        <li><button class="dropdown-item" id="dailyDeaths-btn" type="button" data-bs-target="#dailyDeaths"#}
+{#                                    aria-controls="accDeaths" aria-selected="true" value="deaths_daily">New Daily Deaths</button></li>#}
+{#<!--                        <li><hr class="dropdown-divider"></li>-->#}
+{#<!--                        <li><a class="dropdown-item" href="#">Separated link</a></li>-->#}
+{#                      </ul>#}
+{#                    </div>#}
                 <div class="row">
-                    <div id="daily_confirmed_chart" class=”chart”></div>
-                   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-                    <script type="text/javascript">
-                    var graphs = {{mapJSON_daily_confirmed | safe}};
-                    Plotly.plot('daily_confirmed_chart',graphs,{});
-                    </script>
+                    <figure class="figure">
+                        <div id="daily_chart" class="figure-img img-fluid rounded"></div>
+                        <figcaption class="figure-caption">
+                            Data Sources: County testing data from 
+                            <a href="https://github.com/govex/COVID-19/tree/7d5a00cc03a28c747973cf71b4dd9fef43c9b264/data_tables" 
+                               class="text-decoration-none">JHU CCI;</a>
+                            cases and deaths data from <a href="https://github.com/CSSEGISandData/COVID-19"
+                                                          class="text-decoration-none">JHU CSSE;</a>
+                        </figcaption>
+                    </figure>
+
                 </div>
+
+                </div>
+
+
+{#                <div class="row">#}
+{#                    <div id="daily_confirmed_chart" class=”chart”></div>#}
+{#                   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>#}
+{#                    <script type="text/javascript">#}
+{#                    var graphs = {{mapJSON_daily_confirmed | safe}};#}
+{#                    Plotly.plot('daily_confirmed_chart',graphs,{});#}
+{#                    </script>#}
+{#                </div>#}
 
                  <div class="container p-3">
                 <div class="row">
-                    <h3 style="color: darkblue">Statewide Racial Breakdown of Cases and Deaths</h3>
+                    <h3 style="color: darkblue">Statewide Racial Breakdown of Cases and Deaths<br></h3>
 
-                </div>
-                <div class="row">
-                 <div id="racial_chart" class=”chart”></div>
+                    <div id="racial_chart" class=”chart”></div>
                    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
                     <script type="text/javascript">
                     var graphs = {{graphJSON_racial | safe}};
@@ -66,13 +113,16 @@
                     </script>
 
                 </div>
+
             </div>
 
 
                 <div class="container p-3">
                 <div class="row">
-                    <p style="color: lightslategrey">Data Source: Data shown is only for cases and deaths where
-                        racial data is reported up through March 7, 2021.</p>
+                    <p style="color: lightslategrey">Data Source:
+                        <a href="https://covidtracking.com/race/dashboard" class="text-decoration-none">
+                            COVID Tracking Project Racial Data Tracker</a>
+                        .Data shown is only for cases and deaths where racial data is reported up through March 7, 2021.</p>
                 </div>
             </div>
 
@@ -85,31 +135,30 @@
                 <div class="row">
                     <div class="col-md-12">
                         <p style="color: lightslategrey">
-                            This map shows cumulative numbers for the length of the pandemic. Demographic data
-                            can be selected from the demographic menu on the Daily Data and Demographics tab.
+                            This map shows cumulative numbers for the length of the pandemic.
                         </p>
                     </div>
                 </div>
                 </div>
 
-                <div class="row">
-
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
-                              data-bs-toggle="dropdown" aria-expanded="false">
-                        total cases
-                      </button>
-                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                        <li><button class="dropdown-item active" id="accCases-btn" type="button" data-bs-target="#accCases"
-                                    aria-controls="accCases" aria-selected="true">Total cases</button></li>
-                        <li><button class="dropdown-item" id="accDeaths-btn" type="button" data-bs-target="#accDeaths"
-                                    aria-controls="accDeaths" aria-selected="true">Total deaths</button></li>
-<!--                        <li><hr class="dropdown-divider"></li>-->
-<!--                        <li><a class="dropdown-item" href="#">Separated link</a></li>-->
-                      </ul>
-                    </div>
-
-                </div>
+{#                <div class="row">#}
+{##}
+{#                    <div class="dropdown">#}
+{#                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"#}
+{#                              data-bs-toggle="dropdown" aria-expanded="false">#}
+{#                        total cases#}
+{#                      </button>#}
+{#                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">#}
+{#                        <li><button class="dropdown-item active" id="accCases-btn" type="button" data-bs-target="#accCases"#}
+{#                                    aria-controls="accCases" aria-selected="true">Total cases</button></li>#}
+{#                        <li><button class="dropdown-item" id="accDeaths-btn" type="button" data-bs-target="#accDeaths"#}
+{#                                    aria-controls="accDeaths" aria-selected="true">Total deaths</button></li>#}
+{#<!--                        <li><hr class="dropdown-divider"></li>-->#}
+{#<!--                        <li><a class="dropdown-item" href="#">Separated link</a></li>-->#}
+{#                      </ul>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
 
 
 
@@ -141,7 +190,8 @@
 
                 <div class="container p-3">
                 <div class="row">
-                    <p style="color: lightslategrey">Data Source: Cases and deaths data from JHU CSSE</p>
+                    <p style="color: lightslategrey">Data Source: Cases and deaths data from
+                        <a href="https://github.com/CSSEGISandData/COVID-19" class="text-decoration-none">JHU CSSE</a></p>
                 </div>
             </div>
 

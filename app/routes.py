@@ -99,3 +99,10 @@ def county_maps():
                            mapJSON_daily_confirmed=data.map_daily_data_and_demo_cases(),
                            mapJSON_daily_deaths=data.map_daily_data_and_demo_deaths(),
                            graphJSON_racial=data.graph_racial_breakdown())
+
+
+@app.route('/callback', methods=['POST', 'GET'])
+@login_required
+def county_map_daily_data():
+    data = MapData()
+    return data.map_daily_cases_and_deaths(request.args.get('data'))
