@@ -1,4 +1,3 @@
-import pandas as pd
 import json
 import plotly
 import plotly.graph_objects as go
