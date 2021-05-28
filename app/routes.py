@@ -15,14 +15,8 @@ def index():
     title = 'home'
     data = StateData()
     return render_template('index.html', title=title,
-                           cases_and_deaths_all_time_data=data.query_all_time_cases_and_deaths(),
-                           cases_and_deaths_past_day_data=data.query_past_day_cases_and_deaths(),
-                           cases_and_deaths_past_week_data=data.query_past_week_cases_and_deaths(),
-                           cases_and_deaths_past_month_data=data.query_past_month_cases_and_deaths(),
-                           test_and_positivity_all_time_data=data.query_all_time_test_and_positivity(),
-                           test_past_day_data=data.query_past_day_test(),
-                           test_and_positivity_past_week_data=data.query_past_week_test_and_positivity(),
-                           test_and_positivity_past_month_data=data.query_past_month_test_and_positivity(),
+                           cases_and_deaths_data=data.get_cases_and_deaths(),
+                           test_and_positivity_data=data.get_test_and_positivity(),
                            vaccine_data=data.query_vaccine_data(),
                            graphJSON_hospitalizations=data.draw_hospitalizations())
 
@@ -96,8 +90,8 @@ def county_maps():
     return render_template('county_maps.html', title=title,
                            mapJSON_acc_confirmed=data.map_cumulative_data_total_cases(),
                            mapJSON_acc_deaths=data.map_cumulative_data_total_deaths(),
-                           mapJSON_daily_confirmed=data.map_daily_data_and_demo_cases(),
-                           mapJSON_daily_deaths=data.map_daily_data_and_demo_deaths(),
+                           mapJSON_daily_confirmed=data.map_daily_cases(),
+                           mapJSON_daily_deaths=data.map_daily_deaths(),
                            graphJSON_racial=data.graph_racial_breakdown())
 
 
