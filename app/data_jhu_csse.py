@@ -3,12 +3,14 @@ import dateutil.parser
 import requests
 import pandas as pd
 from app.api import API
+from app.cached_data_src import CachedDataSrc
+
 
 
 # Cases and deaths data source
 class DataFromJhuCSSE:
     def __init__(self):
-        self.df_csse = API().query_api_jhu_csse()
+        self.df_csse = CachedDataSrc().get_cached_or_query_api_jhu_csse()
 
     def process_df_csse_county_map(self):
         df = self.df_csse

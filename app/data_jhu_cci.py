@@ -1,15 +1,17 @@
 import datetime
 from app.api import API
+from app.cached_data_src import CachedDataSrc
 
 
 class DataFromJhuCCI:
 
     def __init__(self):
-        self.api = API()
-        self.df_testing = self.api.query_api_jhu_cci_testing()
-        self.df_vaccine_administered = self.api.query_api_jhu_cci_vaccine_admin()
-        self.df_vaccinated = self.api.query_api_jhu_cci_vaccinated()
-        self.df_population = self.api.query_api_state_population()
+        # self.api = API()
+        self.cached_data_src = CachedDataSrc()
+        self.df_testing = self.cached_data_src.get_cached_or_query_api_jhu_cci_testing()
+        self.df_vaccine_administered = self.cached_data_src.get_cached_or_query_api_jhu_cci_vaccine_admin()
+        self.df_vaccinated = self.cached_data_src.get_cached_or_query_api_jhu_cci_vaccinated()
+        self.df_population = self.cached_data_src.get_cached_or_query_api_state_population()
 
     def get_df_testing(self):
         return self.df_testing

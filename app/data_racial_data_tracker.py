@@ -1,11 +1,12 @@
 from app.api import API
-
+from app.cached_data_src import CachedDataSrc
 
 
 class DataFromRacialTracker:
     def __init__(self):
-        self.api = API()
-        self.df_racial_breakdown = self.api.query_api_racial()
+        # self.api = API()
+        self.cached_data_src = CachedDataSrc()
+        self.df_racial_breakdown = self.cached_data_src.get_cached_or_query_api_racial()
 
     def get_racial_data_of_cases_and_deaths(self):
         cases_NHPI = self.df_racial_breakdown.loc[0, 'Cases_NHPI_per_100k']

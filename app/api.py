@@ -4,6 +4,8 @@ import pandas as pd
 from urllib.request import urlopen
 import time
 
+
+
 API_JHU_CSSE = "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/covid-19-qppza/service/REST-API/incoming_webhook/us_only?"
 API_JHU_CCI_TESTING = "https://jhucoronavirus.azureedge.net/api/v1/testing/daily.json"
 API_JHU_CCI_VACCINE_ADMIN = "https://raw.githubusercontent.com/govex/COVID-19/master/data_tables/vaccine_data/us_data/time_series/vaccine_data_us_timeline.csv"
@@ -14,8 +16,10 @@ API_POPULATION = "https://raw.githubusercontent.com/govex/COVID-19/master/data_t
 API_GEOJSON = "https://raw.githubusercontent.com/loganpowell/census-geojson/master/GeoJSON/20m/2019/county.json"
 
 class API:
-
     def query_api_jhu_csse(self):
+        # import traceback
+        # traceback.print_stack()
+
         print(f'querying csse api... ')
         start = time.time()
         search_api_url = API_JHU_CSSE
@@ -125,16 +129,16 @@ class API:
             df['Deaths_LatinX_per_100k'] = df['Deaths_LatinX'].div(df['Deaths_Total']) * 100000
             df['Deaths_Ethnicity_Hispanic_per_100k'] = df['Deaths_Ethnicity_Hispanic'].div(df['Deaths_Total']) * 100000
 
-            # df = df[['State', 'Date', 'Cases_Asian', 'Cases_AIAN', 'Cases_Black', 'Cases_White', 'Cases_NHPI',
-            #          'Cases_LatinX', 'Cases_Ethnicity_Hispanic',
-            #          'Cases_Asian_per_100k', 'Cases_AIAN_per_100k', 'Cases_Black_per_100k', 'Cases_White_per_100k',
-            #          'Cases_NHPI_per_100k', 'Cases_LatinX_per_100k', 'Cases_Ethnicity_Hispanic_per_100k',
-            #          'Cases_Total',
-            #          'Deaths_AIAN', 'Deaths_Asian', 'Deaths_Black', 'Deaths_Ethnicity_Hispanic',
-            #          'Deaths_LatinX', 'Deaths_NHPI', 'Deaths_White', 'Deaths_Total',
-            #          'Deaths_Asian_per_100k', 'Deaths_AIAN_per_100k', 'Deaths_Black_per_100k', 'Deaths_White_per_100k',
-            #          'Deaths_NHPI_per_100k', 'Deaths_LatinX_per_100k', 'Deaths_Ethnicity_Hispanic_per_100k',
-            #          ]]
+            df = df[['State', 'Date', 'Cases_Asian', 'Cases_AIAN', 'Cases_Black', 'Cases_White', 'Cases_NHPI',
+                     'Cases_LatinX', 'Cases_Ethnicity_Hispanic',
+                     'Cases_Asian_per_100k', 'Cases_AIAN_per_100k', 'Cases_Black_per_100k', 'Cases_White_per_100k',
+                     'Cases_NHPI_per_100k', 'Cases_LatinX_per_100k', 'Cases_Ethnicity_Hispanic_per_100k',
+                     'Cases_Total',
+                     'Deaths_AIAN', 'Deaths_Asian', 'Deaths_Black', 'Deaths_Ethnicity_Hispanic',
+                     'Deaths_LatinX', 'Deaths_NHPI', 'Deaths_White', 'Deaths_Total',
+                     'Deaths_Asian_per_100k', 'Deaths_AIAN_per_100k', 'Deaths_Black_per_100k', 'Deaths_White_per_100k',
+                     'Deaths_NHPI_per_100k', 'Deaths_LatinX_per_100k', 'Deaths_Ethnicity_Hispanic_per_100k',
+                     ]]
 
             pd.set_option('display.max_columns', None)
 

@@ -1,12 +1,13 @@
 import datetime
 from app.api import API
-
+from app.cached_data_src import CachedDataSrc
 
 class DataFromHHS:
 
     def __init__(self):
-        self.api = API()
-        self.df_hospitalizations = self.api.query_api_hhs()
+        # self.api = API()
+        self.cached_data_src = CachedDataSrc()
+        self.df_hospitalizations = self.cached_data_src.get_cached_or_query_api_hhs()
 
     def get_df_hospitalizations(self):
         return self.df_hospitalizations

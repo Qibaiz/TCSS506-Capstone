@@ -13,6 +13,7 @@ class GraphData:
         self.hospitalizations_data_src = DataFromHHS()
 
     def graph_cases(self):
+
         df = self.case_and_deaths_data_src.process_df_csse_data_timeline()
 
         fig = go.Figure()
@@ -21,13 +22,14 @@ class GraphData:
                 x=df['datetime'],
                 y=df['daily_confirmed'],
                 name="Number of Daily Cases",
-                customdata=[
-                    df['accu_confirmed'].values,
-                    df['seven_avg_daily_cases'].values],
+                # Index(['accu_confirmed', 'acc_deaths', 'daily_confirmed', 'daily_deaths',
+                #        'datetime', 'seven_avg_daily_cases', 'seven_avg_daily_deaths'],
+                #       dtype='object')
+                customdata=df.to_numpy(),
                 hovertemplate="%{x}<br>" +
                               "<b>%{y:,.0f} cases</b><br>" +
-                              "%{customdata[0]:.0f} cumulative cases<br>" +
-                              "%{customdata[1]:.0f}-7 Day average<br>"
+                              "%{customdata[0]:,.0f} cumulative cases<br>" +
+                              "%{customdata[5]:,.0f}-7 Day average<br>"
                               "<extra></extra>",
             ))
 
@@ -42,12 +44,13 @@ class GraphData:
                 line=dict(
                     color='firebrick',
                     width=3),
-                customdata=[
-                    df['daily_confirmed'],
-                    df['accu_confirmed']],
-                hovertemplate="%{x}<br>" + "<b>%{customdata[0]:.0f} cases</b><br>" +
-                              "%{customdata[1]:.0f} cumulative cases<br>" +
-                              "%{y:.0f}-7 Day average<br>"
+                customdata=df.to_numpy(),
+                # Index(['accu_confirmed', 'acc_deaths', 'daily_confirmed', 'daily_deaths',
+                #        'datetime', 'seven_avg_daily_cases', 'seven_avg_daily_deaths'],
+                #       dtype='object')
+                hovertemplate="%{x}<br>" + "<b>%{customdata[2]:,.0f} cases</b><br>" +
+                              "%{customdata[0]:,.0f} cumulative cases<br>" +
+                              "%{y:,.0f}-7 Day average<br>"
                               "<extra></extra>",
             ))
 
@@ -82,13 +85,18 @@ class GraphData:
                 x=df['datetime'],
                 y=df['daily_deaths'],
                 name="Number of Daily Deaths",
-                customdata=[
-                    df['acc_deaths'].values,
-                    df['seven_avg_daily_deaths'].values],
+                # customdata=[
+                #     df['acc_deaths'].values,
+                #     df['seven_avg_daily_deaths'].values],
+
+                customdata=df.to_numpy(),
+                # Index(['accu_confirmed', 'acc_deaths', 'daily_confirmed', 'daily_deaths',
+                #        'datetime', 'seven_avg_daily_cases', 'seven_avg_daily_deaths'],
+                #       dtype='object')
                 hovertemplate="%{x}<br>" +
                               "<b>%{y:,.0f} deaths</b><br>" +
-                              "%{customdata[0]:.0f} cumulative deaths<br>" +
-                              "%{customdata[1]:.0f}-7 Day average<br>" +
+                              "%{customdata[1]:,.0f} cumulative deaths<br>" +
+                              "%{customdata[6]:,.0f}-7 Day average<br>" +
                               "<extra></extra>",
             ))
 
@@ -103,12 +111,17 @@ class GraphData:
                 line=dict(
                     color='firebrick',
                     width=3),
-                customdata=[
-                    df['daily_deaths'].values,
-                    df['acc_deaths'].values],
-                hovertemplate="%{x}<br>" + "<b>%{customdata[0]:.0f} deaths</b><br>" +
-                              "%{customdata[1]:.0f} cumulative deaths<br>" +
-                              "%{y:.0f}-7 Day average<br>" +
+                # customdata=[
+                #     df['daily_deaths'].values,
+                #     df['acc_deaths'].values],
+
+                customdata=df.to_numpy(),
+                # Index(['accu_confirmed', 'acc_deaths', 'daily_confirmed', 'daily_deaths',
+                #        'datetime', 'seven_avg_daily_cases', 'seven_avg_daily_deaths'],
+                #       dtype='object')
+                hovertemplate="%{x}<br>" + "<b>%{customdata[3]:,.0f} deaths</b><br>" +
+                              "%{customdata[1]:,.0f} cumulative deaths<br>" +
+                              "%{y:,.0f}-7 Day average<br>" +
                               "<extra></extra>",
             ))
 
@@ -137,6 +150,7 @@ class GraphData:
 
     def graph_test_positivity(self):
         df = self.test_and_vaccine_data_src.get_df_testing()
+        # print(df.columns)
         # print(df.head(10))
         fig = go.Figure()
         fig.add_trace(
@@ -144,9 +158,9 @@ class GraphData:
                 x=df['DateTime'],
                 y=df['tests_combined_daily'],
                 name="Number of Daily Tests",
-                customdata=[df['positivity_daily']],
+                customdata=df.to_numpy(),
                 hovertemplate="%{x}<br>" + "<b>%{y:,.0f} tests</b><br>" +
-                              "%{customdata[0]:.0%} positive" +
+                              "%{customdata[14]:.0%} positive" +
                               "<extra></extra>",
             ))
 
@@ -161,10 +175,6 @@ class GraphData:
                 line=dict(
                     color='firebrick',
                     width=3),
-                # customdata=[df['tests_combined_daily']],
-                # hovertemplate="<b>%{customa[0]} tests</b><br>" +
-                #               "%{y:.0f}-7 Day average<br>" +
-                #               "<extra></extra>",
             ))
 
         fig.update_layout(
@@ -192,17 +202,18 @@ class GraphData:
 
     def graph_hospitalizations(self):
         df = self.hospitalizations_data_src.get_df_hospitalizations()
-        # print(df.head(10))
+        # print(df.columns)
         fig = go.Figure()
         fig.add_trace(
             go.Bar(
                 x=df['DateTime'],
                 y=df['inpatient_beds_used_covid'],
                 name="Daily COVID-19 Hospitalizations",
-                customdata=[df['accumulative_hospitalization'], df['seven_day_avg_covid_hospitalizations']],
+                # customdata=[df['accumulative_hospitalization'], df['seven_day_avg_covid_hospitalizations']],
+                customdata=df.to_numpy(),
                 hovertemplate="%{x}<br>" + "<b>%{y:,.0f} hospitalizations</b><br>" +
-                              "%{customdata[0]:,.0f} cumulative hospitalizations<br>" +
-                              "%{customdata[1]:,.0f} 7-Day Average" +
+                              "%{customdata[96]:,.0f} cumulative hospitalizations<br>" +
+                              "%{customdata[98]:,.0f} 7-Day Average" +
                               "<extra></extra>",
             ))
 
@@ -217,10 +228,11 @@ class GraphData:
                 line=dict(
                     color='firebrick',
                     width=3),
-                # customdata=[df['tests_combined_daily']],
-                # hovertemplate="<b>%{customa[0]} tests</b><br>" +
-                #               "%{y:.0f}-7 Day average<br>" +
-                #               "<extra></extra>",
+                customdata=df.to_numpy(),
+                hovertemplate="%{x}<br>" + "<b>%{customdata[98]:,.0f} hospitalizations</b><br>" +
+                              "%{customdata[96]:,.0f} cumulative hospitalizations<br>" +
+                              "%{y:,.0f} 7-Day Average" +
+                              "<extra></extra>",
             ))
 
         fig.update_layout(
@@ -248,17 +260,22 @@ class GraphData:
 
     def graph_vaccinations(self):
         df = self.test_and_vaccine_data_src.get_df_vaccine_administered()
-        # print(df.head(10))
+        # print(df.columns)
         fig = go.Figure()
         fig.add_trace(
             go.Bar(
                 x=df['DateTime'],
                 y=df['daily_doses'],
                 name="Number of Daily Doses",
-                customdata=[df['Doses_admin'], df['seven_day_avg_daily_doses']],
+                # Index(['DateTime', 'Doses_admin', 'daily_doses', 'seven_day_doses',
+                #        'seven_day_avg_daily_doses'],
+                #       dtype='object')
+
+                # customdata=[df['Doses_admin'], df['seven_day_avg_daily_doses']],
+                customdata=df.to_numpy(),
                 hovertemplate="%{x}<br>" + "<b>%{y:,.0f} doses</b><br>" +
-                              "%{customdata[0]:,.0f} cumulative doses<br>" +
-                              "%{customdata[1]:,.0f} 7-Day Average" +
+                              "%{customdata[1]:,.0f} cumulative doses<br>" +
+                              "%{customdata[4]:,.0f} 7-Day Average" +
                               "<extra></extra>",
             ))
 
@@ -273,10 +290,11 @@ class GraphData:
                 line=dict(
                     color='firebrick',
                     width=3),
-                # customdata=[df['tests_combined_daily']],
-                # hovertemplate="<b>%{customa[0]} tests</b><br>" +
-                #               "%{y:.0f}-7 Day average<br>" +
-                #               "<extra></extra>",
+                customdata=df.to_numpy(),
+                hovertemplate="%{x}<br>" + "<b>%{customdata[4]:,.0f} doses</b><br>" +
+                              "%{customdata[1]:,.0f} cumulative doses<br>" +
+                              "%{y:,.0f} 7-Day Average" +
+                              "<extra></extra>",
             ))
 
         fig.update_layout(
@@ -301,7 +319,6 @@ class GraphData:
         fig.update_traces(texttemplate='%{text:.2s}')
         # fig.show()
         return json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-
 
 # a = GraphData()
 # a.graph_test_positivity()
