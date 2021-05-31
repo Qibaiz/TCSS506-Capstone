@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-md-12">
+                <p style="color: lightslategrey">
+                    This tool helps you to track your selected counties.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        function countyData(selection) {
+            $.get({
+                url: "/county_back", data: { 'data': selection }, success: function (result) {
+
+                }
+
+            });
+        }
+    </script>
+
+
+    <div class="container p-3">
+    <p style="color: lightslategrey">Select the county you want to see</p>
+        <div class="row">
+        <div class="col-3">
+             <select id="counties" class="form-select" size="15" aria-label="size 15 select example"
+                     onChange="cb(this.options[this.selectedIndex].value)">
+                  <option selected>Select County</option>
+
+                 {% for county in data %}
+                  <option value="{{ county }}">{{ county }}</option>
+                  {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-9">
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item">Total Confirmed Cases</li>
+              <li class="list-group-item">A second item</li>
+            </ul>
+
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item">Total Deaths</li>
+              <li class="list-group-item">A second item</li>
+            </ul>
+
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item">Past Day New Cases</li>
+              <li class="list-group-item">A second item</li>
+            </ul>
+
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item">Past Day New Deaths</li>
+              <li class="list-group-item">A second item</li>
+            </ul>
+
+        </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

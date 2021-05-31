@@ -7,6 +7,7 @@ from app.models import UserModel
 from app.data_for_state_overview import StateData
 from app.data_for_data_timeline import GraphData
 from app.data_for_county_maps import MapData
+from app.data_for_favorites import FavoriteData
 
 
 @app.route('/')
@@ -100,4 +101,29 @@ def county_maps():
 def county_map_daily_data():
     data = MapData()
     return data.map_daily_cases_and_deaths(request.args.get('data'))
+
+
+@app.route('/favorites')
+@login_required
+def favorites():
+    title = 'Favorites'
+    data = FavoriteData()
+    return render_template('favorites.html', title=title,
+                           data=data.get_cases_and_deaths())
+
+
+@app.route('/county_back', methods=['POST', 'GET'])
+@login_required
+def favorites_county_data():
+    data = FavoriteData()
+    return data.get_one_county_data(request.args.get('data'))
+
+
+@app.route('/about')
+@login_required
+def about():
+    return render_template('about.html')
+
+
+
 
