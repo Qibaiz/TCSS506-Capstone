@@ -33,6 +33,7 @@ class API:
         df = pd.DataFrame(data)
 
         time_used = time.time() - start
+        # print(df.tail(10))
         print(f'finished querying csse api, used time: {time_used}')
         pd.set_option('display.max_columns', None)
 
@@ -57,6 +58,8 @@ class API:
             df = df.astype({"date": str})
             df.set_index('date', inplace=True)
             pd.set_option('display.max_columns', None)
+
+            # print(df.tail(10))
 
             time_used = time.time() - start
             print(f'finished querying cci testing api, used time: {time_used}')
@@ -230,6 +233,7 @@ class API:
 
 
 # a = API()
+# a.query_api_jhu_csse()
 # a.query_api_hhs()
 # a.query_api_jhu_cci_testing()
 # a.query_api_jhu_csse()

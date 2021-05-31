@@ -35,7 +35,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p style="color: lightslategrey">
-                                This tool shows key county-level COVID-19 case and testing data.
+                                This tool shows key county-level COVID-19 daily cases and testing data. <br>
+                                COVID-19 data points can be chosen from the drop down menu below
                             </p>
                         </div>
                     </div>
@@ -54,27 +55,15 @@
                         });
                     }
                 </script>
+
                 <div class="col-2">
                 <select class="form-select form-select-sm" onChange="cb(this.options[this.selectedIndex].value)">
-                    <option value="confirmed_daily" selected>New Daily Cases</option>
-{#                      <option value="confirmed_daily">New Daily Cases</option>#}
+                    <option selected>Select option</option>
+                    <option value="confirmed_daily">New Daily Cases</option>
                   <option value="deaths_daily">New Daily Deaths</option>
                 </select>
 
-{#                    <div class="dropdown">#}
-{#                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"#}
-{#                              data-bs-toggle="dropdown" aria-expanded="false" onchange="cb(this.options[this.selectedIndex].value)">#}
-{#                        New Daily Cases#}
-{#                      </button>#}
-{#                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">#}
-{#                        <li><button class="dropdown-item active" id="dailyCases-btn" type="button" data-bs-target="#dailyCases"#}
-{#                                    aria-controls="accCases" aria-selected="true" value="confirmed_daily">New Daily Cases</button></li>#}
-{#                        <li><button class="dropdown-item" id="dailyDeaths-btn" type="button" data-bs-target="#dailyDeaths"#}
-{#                                    aria-controls="accDeaths" aria-selected="true" value="deaths_daily">New Daily Deaths</button></li>#}
-{#<!--                        <li><hr class="dropdown-divider"></li>-->#}
-{#<!--                        <li><a class="dropdown-item" href="#">Separated link</a></li>-->#}
-{#                      </ul>#}
-{#                    </div>#}
+
                 <div class="row">
                     <figure class="figure">
                         <div id="daily_chart" class="figure-img img-fluid rounded"></div>
@@ -91,15 +80,6 @@
 
                 </div>
 
-
-{#                <div class="row">#}
-{#                    <div id="daily_confirmed_chart" class=”chart”></div>#}
-{#                   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>#}
-{#                    <script type="text/javascript">#}
-{#                    var graphs = {{mapJSON_daily_confirmed | safe}};#}
-{#                    Plotly.plot('daily_confirmed_chart',graphs,{});#}
-{#                    </script>#}
-{#                </div>#}
 
                  <div class="container p-3">
                 <div class="row">
@@ -141,27 +121,28 @@
                 </div>
                 </div>
 
-{#                <div class="row">#}
+
+{#                <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>#}
+{#                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
+{#                <script>#}
+{#                    function cb(selection) {#}
+{#                        $.getJSON({#}
+{#                            url: "/callback", data: { 'data': selection }, success: function (result) {#}
+{#                                Plotly.newPlot('accu_chart', result, {});#}
+{#                            }#}
+{#                        });#}
+{#                    }#}
+{#                </script>#}
 {##}
-{#                    <div class="dropdown">#}
-{#                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"#}
-{#                              data-bs-toggle="dropdown" aria-expanded="false">#}
-{#                        total cases#}
-{#                      </button>#}
-{#                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">#}
-{#                        <li><button class="dropdown-item active" id="accCases-btn" type="button" data-bs-target="#accCases"#}
-{#                                    aria-controls="accCases" aria-selected="true">Total cases</button></li>#}
-{#                        <li><button class="dropdown-item" id="accDeaths-btn" type="button" data-bs-target="#accDeaths"#}
-{#                                    aria-controls="accDeaths" aria-selected="true">Total deaths</button></li>#}
-{#<!--                        <li><hr class="dropdown-divider"></li>-->#}
-{#<!--                        <li><a class="dropdown-item" href="#">Separated link</a></li>-->#}
-{#                      </ul>#}
-{#                    </div>#}
-{##}
-{#                </div>#}
-
-
-
+{#                <div class="col-2">#}
+{#                <select class="form-select form-select-sm" onChange="cb(this.options[this.selectedIndex].value)">#}
+{#                    <option selected>Select option</option>#}
+{#                    <option value="confirmed">Total Cases</option>#}
+{#                  <option value="deaths">Total Deaths</option>#}
+{#                </select>#}
+                <div class="row p-3">
+                    <h4 style="color: darkblue">Total cases</h4>
+                </div>
 
                 <div class="row" >
                     <div class="col-md-12" id="accCases" aria-labelledby="accCases-btn">
@@ -175,6 +156,9 @@
                     </div>
                 </div>
 
+                <div class="row p-3">
+                    <h4 style="color: darkblue">Total deaths</h4>
+                </div>
 
                 <div class="row" >
                     <div class="col-md-12" id="accDeaths" aria-labelledby="accDeaths-btn">

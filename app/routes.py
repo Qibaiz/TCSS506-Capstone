@@ -90,8 +90,8 @@ def county_maps():
     return render_template('county_maps.html', title=title,
                            mapJSON_acc_confirmed=data.map_cumulative_data_total_cases(),
                            mapJSON_acc_deaths=data.map_cumulative_data_total_deaths(),
-                           mapJSON_daily_confirmed=data.map_daily_cases(),
-                           mapJSON_daily_deaths=data.map_daily_deaths(),
+                           # mapJSON_daily_confirmed=data.map_daily_cases(),
+                           # mapJSON_daily_deaths=data.map_daily_deaths(),
                            graphJSON_racial=data.graph_racial_breakdown())
 
 
@@ -100,3 +100,4 @@ def county_maps():
 def county_map_daily_data():
     data = MapData()
     return data.map_daily_cases_and_deaths(request.args.get('data'))
+

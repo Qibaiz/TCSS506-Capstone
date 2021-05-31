@@ -28,6 +28,8 @@ class DataFromJhuCCI:
         last_date = self.get_state_overview_all_time_date()
         # print(type(last_date))
         # print(last_date)
+        # print(self.df_testing.tail(10))
+
 
         all_time_tested = self.df_testing.loc[last_date, 'tests_combined_total']
         all_time_positivity_cases = self.df_testing.loc[last_date, 'cases_conf_probable']

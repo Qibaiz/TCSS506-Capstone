@@ -13,7 +13,6 @@ class GraphData:
         self.hospitalizations_data_src = DataFromHHS()
 
     def graph_cases(self):
-
         df = self.case_and_deaths_data_src.process_df_csse_data_timeline()
 
         fig = go.Figure()
@@ -159,6 +158,12 @@ class GraphData:
                 y=df['tests_combined_daily'],
                 name="Number of Daily Tests",
                 customdata=df.to_numpy(),
+                # Index(['state', 'people_viral_positive', 'tests_viral_positive',
+                #        'tests_viral_negative', 'encounters_viral_total', 'tests_viral_total',
+                #        'people_viral_total', 'tests_combined_total', 'cases_conf_probable',
+                #        'people_antigen_positive', 'people_antigen_total', 'DateTime',
+                #        'tests_combined_daily', 'positivity_daily', 'positivity_ratio_daily'],
+                #       dtype='object')
                 hovertemplate="%{x}<br>" + "<b>%{y:,.0f} tests</b><br>" +
                               "%{customdata[14]:.0%} positive" +
                               "<extra></extra>",
@@ -175,6 +180,9 @@ class GraphData:
                 line=dict(
                     color='firebrick',
                     width=3),
+                customdata=df.to_numpy(),
+                hovertemplate="%{x}<br>" + "<b>%{y:,.0f} positive tests</b><br>" +
+                              "<extra></extra>",
             ))
 
         fig.update_layout(
