@@ -103,26 +103,60 @@ def county_map_daily_data():
     return data.map_daily_cases_and_deaths(request.args.get('data'))
 
 
-@app.route('/favorites')
+@app.route('/favorite_county')
 @login_required
-def favorites():
-    title = 'Favorites'
+def favorite_county():
+    title = 'Favorite'
     data = FavoriteData()
-    return render_template('favorites.html', title=title,
-                           data=data.get_cases_and_deaths())
+    return render_template('favorite_county.html', title=title,
+                           data=data.get_county_name())
 
-
-@app.route('/county_back', methods=['POST', 'GET'])
+@app.route('/county')
 @login_required
-def favorites_county_data():
+def get_county_info():
     data = FavoriteData()
-    return data.get_one_county_data(request.args.get('data'))
+    value = request.args.get("county")
+    data = data.get_one_county_list_data(value)
+
+    return f"""
+            <ul class="list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">County</li>
+              <li class="list-group-item list-group-item-info">{value}</li>
+            </ul>
+            <ul class="list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">Population</li>
+              <li class="list-group-item list-group-item-info">{data['population']}</li>
+            </ul>
+            <ul class="list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">Total Confirmed Cases</li>
+              <li class="list-group-item list-group-item-info">{data['total_cases']}</li>
+            </ul>
+            <ul class="list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">Total Deaths</li>
+              <li class="list-group-item list-group-item-info">{data['total_deaths']}</li>
+            </ul>
+            <ul class="list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">Past Day Deaths</li>
+              <li class="list-group-item list-group-item-info">{data['past_day_cases']}</li>
+            </ul>
+            <ul class="list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">Past Day Deaths</li>
+              <li class="list-group-item list-group-item-info">{data['past_day_deaths']}</li>
+            </ul>"""""
+
+@app.route('/countyChart')
+@login_required
+def graph_county_line():
+    data = FavoriteData()
+    value = request.args.get("county")
+    return data.get_one_county_line_data(value)
 
 
 @app.route('/about')
 @login_required
 def about():
     return render_template('about.html')
+
 
 
 

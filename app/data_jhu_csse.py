@@ -12,17 +12,24 @@ class DataFromJhuCSSE:
     def __init__(self):
         self.df_csse = CachedDataSrc().get_cached_or_query_api_jhu_csse()
 
-    def process_df_csse_favorites(self):
+    def process_df_csse_favorites_list(self):
         df = self.df_csse
         past_date = self.get_country_maps_past_day_date()
-        filt = (df['date'] == past_date) & (df['county'] != 'Unassigned')
+        filt = (df['date'] == past_date) & (df['county'] != 'Unassigned') & (df['county'] != 'Out of WA')
         df = df.loc[filt]
         df = df[['county', 'population', 'confirmed', 'deaths', 'confirmed_daily', 'deaths_daily']]
-        df.set_index('county', inplace=True)
+        # df.set_index('county', inplace=True)
         pd.set_option('display.max_columns', None)
         # print(df.info())
         # print(df.shape)
         # print(df.tail(10))
+        return df
+
+    def process_df_csse_favorites_line(self):
+        df = self.df_csse
+        filt = df['county'] != 'Unassigned'
+        df = df.loc[filt]
+        pd.set_option('display.max_columns', None)
         return df
 
     def process_df_csse_county_map(self):

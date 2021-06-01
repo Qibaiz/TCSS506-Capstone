@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-md-12">
+                <p style="color: lightslategrey">
+                    This tool helps you to track your selected counties.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        function cb(selection) {
+
+            $.ajax({ type: "GET",
+                     url: "/county?county=" + selection,
+                     async: true,
+                     success : function(result)
+                     {
+                         //alert(result);
+                         $('#countyInfo').html(result);
+
+                     }
+            });
+
+            $.getJSON({
+                url: "/countyChart?county=" + selection,
+                success: function (result) {
+                    Plotly.newPlot('countyChart', result, {});
+                }
+            });
+        }
+
+    </script>
+
+
+
+    <div class="container p-3">
+    <p style="color: lightslategrey">Select the county you want to see</p>
+        <div class="row">
+        <div class="col-3">
+             <select id="counties" class="form-select" size="15" aria-label="size 15 select example"
+                     onChange="cb(this.value)">
+{#                  <option selected>Select County</option>#}
+
+                 {% for county in data %}
+                  <option value="{{ county }}">{{ county }}</option>
+                  {% endfor %}
+            </select>
+        </div>
+
+        <div id="countyInfo" class="col-3">
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">County</li>
+              <li class="list-group-item list-group-item-info">None</li>
+            </ul>
+
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">Population</li>
+              <li class="list-group-item list-group-item-info">0</li>
+            </ul>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">Total Confirmed Cases</li>
+              <li class="list-group-item list-group-item-info">0</li>
+            </ul>
+
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">Total Deaths</li>
+              <li class="list-group-item list-group-item-info">0</li>
+            </ul>
+
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">Past Day New Cases</li>
+              <li class="list-group-item list-group-item-info">0</li>
+            </ul>
+
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item list-group-item-primary">Past Day New Deaths</li>
+              <li class="list-group-item list-group-item-info">0</li>
+            </ul>
+
+        </div>
+
+
+        <div id='countyChart' class="col-6"></div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
