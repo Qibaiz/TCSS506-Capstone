@@ -1,4 +1,3 @@
-from app.api import API
 from app.cached_data_src import CachedDataSrc
 
 

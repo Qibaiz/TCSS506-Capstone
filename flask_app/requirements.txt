@@ -10,6 +10,7 @@ email-validator==1.0.5
 pandas
 plotly==4.14.3
 plotly.express
-
+gunicorn
+psycopg2-binary
 
 

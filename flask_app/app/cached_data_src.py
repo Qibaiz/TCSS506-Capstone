@@ -1,9 +1,10 @@
 from os import path
+import os
 import datetime
 import pickle
 from app.api import API
 
-
+CACHE_DIR="/tmp/"
 class CachedDataSrc:
     def __init__(self):
         self.api = API()
@@ -30,7 +31,6 @@ class CachedDataSrc:
 
     def get_cached_or_query_api(self, file_name, get_data_fun):
         # check if the file is stored in the caching directory
-        file_name = file_name
         file_log = file_name + '_log'
         # print(f'out of date: {self.is_file_out_of_date(file_name)}')
         # print(f'path:{path.exists(file_name)}')
@@ -48,7 +48,7 @@ class CachedDataSrc:
         return data
 
     def get_cached_or_query_api_jhu_csse(self):
-        file_name = './app/cached/api_jhu_csse'
+        file_name = '{}/api_jhu_csse'.format(CACHE_DIR)
         # if cached:
         #   use_cached
         # else:
@@ -56,29 +56,29 @@ class CachedDataSrc:
         return self.get_cached_or_query_api(file_name, self.api.query_api_jhu_csse)
 
     def get_cached_or_query_api_jhu_cci_testing(self):
-        file_name = './app/cached/api_jhu_cci_testing'
+        file_name = '{}/api_jhu_cci_testing'.format(CACHE_DIR)
         return self.get_cached_or_query_api(file_name, self.api.query_api_jhu_cci_testing)
 
     def get_cached_or_query_api_jhu_cci_vaccine_admin(self):
-        file_name = './app/cached/api_jhu_cci_vaccine_admin'
+        file_name = '{}/api_jhu_cci_vaccine_admin'.format(CACHE_DIR)
         return self.get_cached_or_query_api(file_name, self.api.query_api_jhu_cci_vaccine_admin)
 
     def get_cached_or_query_api_jhu_cci_vaccinated(self):
-        file_name = './app/cached/api_jhu_cci_vaccinated'
+        file_name = '{}/api_jhu_cci_vaccinated'.format(CACHE_DIR)
         return self.get_cached_or_query_api(file_name, self.api.query_api_jhu_cci_vaccinated)
 
     def get_cached_or_query_api_racial(self):
-        file_name = './app/cached/api_racial'
+        file_name = '{}/api_racial'.format(CACHE_DIR)
         return self.get_cached_or_query_api(file_name, self.api.query_api_racial)
 
     def get_cached_or_query_api_hhs(self):
-        file_name = './app/cached/api_hhs'
+        file_name = '{}/api_hhs'.format(CACHE_DIR)
         return self.get_cached_or_query_api(file_name, self.api.query_api_hhs)
 
     def get_cached_or_query_api_state_population(self):
-        file_name = './app/cached/api_population'
+        file_name = '{}/api_population'.format(CACHE_DIR)
         return self.get_cached_or_query_api(file_name, self.api.query_api_state_population)
 
     def get_cached_or_query_api_geojson(self):
-        file_name = './app/cached/api_geojson'
+        file_name = '{}/api_geojson'.format(CACHE_DIR)
         return self.get_cached_or_query_api(file_name, self.api.query_api_geojson)
