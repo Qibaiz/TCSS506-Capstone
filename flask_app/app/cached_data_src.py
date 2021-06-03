@@ -35,8 +35,11 @@ class CachedDataSrc:
         # print(f'out of date: {self.is_file_out_of_date(file_name)}')
         # print(f'path:{path.exists(file_name)}')
         # print(not path.exists(file_name) or self.is_file_out_of_date(file_name))
-        if not path.exists(file_name) or self.is_file_out_of_date(file_name):
+        if not path.exists(file_name):
             # print("inside query.....")
+            with open(file_name, 'wb') as handle:
+                pickle.dump(get_data_fun(), handle, protocol=pickle.HIGHEST_PROTOCOL)
+        if self.is_file_out_of_date(file_name):
             with open(file_name, 'wb') as handle:
                 pickle.dump(get_data_fun(), handle, protocol=pickle.HIGHEST_PROTOCOL)
         # load data from caching file
