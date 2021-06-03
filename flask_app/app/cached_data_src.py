@@ -39,7 +39,7 @@ class CachedDataSrc:
             # print("inside query.....")
             with open(file_name, 'wb') as handle:
                 pickle.dump(get_data_fun(), handle, protocol=pickle.HIGHEST_PROTOCOL)
-        if self.is_file_out_of_date(file_name):
+        elif self.is_file_out_of_date(file_name):
             with open(file_name, 'wb') as handle:
                 pickle.dump(get_data_fun(), handle, protocol=pickle.HIGHEST_PROTOCOL)
         # load data from caching file
