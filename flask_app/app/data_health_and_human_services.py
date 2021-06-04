@@ -1,5 +1,6 @@
 import datetime
 from app.cached_data_src import CachedDataSrc
+from pytz import timezone
 
 class DataFromHHS:
 
@@ -12,9 +13,11 @@ class DataFromHHS:
         return self.df_hospitalizations
 
     def get_hospitalizations_last_week(self):
-        today = datetime.date.today()
+        date_format = "%Y/%m/%d"
+        # today = datetime.date.today()
+        today = datetime.datetime.now().astimezone(timezone('US/Pacific'))
         target_date = today - datetime.timedelta(days=8)
-        formatted_date = target_date.strftime("%Y/%m/%d")
+        formatted_date = target_date.strftime(date_format)
         return formatted_date
 
     def query_state_overview_hospitalizations_data(self):

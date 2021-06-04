@@ -1,5 +1,6 @@
 import datetime
 from app.cached_data_src import CachedDataSrc
+from pytz import timezone
 
 
 class DataFromJhuCCI:
@@ -64,9 +65,11 @@ class DataFromJhuCCI:
         return data
 
     def process_state_overview_date_period(self, days_difference):
-        today = datetime.date.today()
+        date_format = '%Y%m%d'
+        today = datetime.datetime.now().astimezone(timezone('US/Pacific'))
+        # today = datetime.date.today()
         target_date = today - datetime.timedelta(days=days_difference)
-        formatted_date = target_date.strftime("%Y%m%d")
+        formatted_date = target_date.strftime(date_format)
         return formatted_date
 
     def get_state_overview_all_time_date(self):
@@ -89,9 +92,11 @@ class DataFromJhuCCI:
         return population
 
     def get_vaccines_administered_past_date(self):
-        today = datetime.date.today()
+        date_format = "%Y-%m-%d"
+        # today = datetime.date.today()
+        today = datetime.datetime.now().astimezone(timezone('US/Pacific'))
         target_date = today - datetime.timedelta(days=1)
-        formatted_date = target_date.strftime("%Y-%m-%d")
+        formatted_date = target_date.strftime(date_format)
         return formatted_date
 
     def get_state_overview_vaccine_data(self):

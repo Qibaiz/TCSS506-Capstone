@@ -12,5 +12,6 @@ plotly==4.14.3
 plotly.express
 gunicorn
 psycopg2-binary
+pytz
 
 

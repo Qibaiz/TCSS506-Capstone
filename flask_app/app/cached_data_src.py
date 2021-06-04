@@ -1,8 +1,10 @@
 from os import path
 import os
-import datetime
+import datetime, time
 import pickle
 from app.api import API
+from pytz import timezone
+
 
 CACHE_DIR="/tmp/"
 class CachedDataSrc:
@@ -10,8 +12,11 @@ class CachedDataSrc:
         self.api = API()
 
     def is_file_out_of_date(self, file_name):
-        current_date = datetime.date.today()
-        date_str = current_date.strftime("%d/%m/%Y")
+        date_format = '%d/%m/%Y'
+        # current_date = datetime.date.today()
+        date = datetime.datetime.now().astimezone(timezone('US/Pacific'))
+        # print(date)
+        date_str = date.strftime(date_format)
         my_data = {file_name: date_str}
 
         file_log = file_name + '_log'
@@ -19,13 +24,17 @@ class CachedDataSrc:
             data = pickle.load(handle)
 
         file_out_of_date = True
+        # print(f'mydata:{my_data}')
+        # print(f'exist data:{data}')
         if my_data == data:
             file_out_of_date = False
         return file_out_of_date
 
     def update_file_log(self, file_name):
-        current_date = datetime.date.today()
-        date_str = current_date.strftime("%d/%m/%Y")
+        # current_date = datetime.date.today()
+        date_format = '%d/%m/%Y'
+        current_date = datetime.datetime.now().astimezone(timezone('US/Pacific'))
+        date_str = current_date.strftime(date_format)
         data = {file_name: date_str}
         return data
 

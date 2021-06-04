@@ -2,6 +2,7 @@ import datetime
 import dateutil.parser
 import pandas as pd
 from app.cached_data_src import CachedDataSrc
+from pytz import timezone
 
 
 
@@ -114,14 +115,17 @@ class DataFromJhuCSSE:
 
 
     def process_state_overview_start_date(self, days_difference):
-        today = datetime.date.today()
+        date_format = '%Y-%m-%d'
+        # today = datetime.date.today()
+        today = datetime.datetime.now().astimezone(timezone('US/Pacific'))
         target_date = today - datetime.timedelta(days=days_difference)
         # year = target_date.year
         # month = target_date.month
         # date = target_date.day
         # min_date = datetime.date(year, month, date)
-        formatted_target_date = str(target_date) + 'T00:00:00.000Z'
+        formatted_target_date = target_date.strftime(date_format) + 'T00:00:00.000Z'
         # formatted_max_date = str(min_date) + 'T00:00:00.000Z'
+        # print(f'formatted_target_date{formatted_target_date}')
         return formatted_target_date
 
     def get_state_overview_all_time_date(self):
